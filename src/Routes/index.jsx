@@ -1,10 +1,7 @@
 import React, { memo } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Layout from '../Layout';
-
-function Home() {
-  return (<>Hola</>);
-}
+import Home from '../Pages';
 
 function NoMatch({ location }) {
   const { pathname } = location;
