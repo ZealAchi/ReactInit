@@ -1,6 +1,6 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WebpackLighthousePlugin = require('webpack-lighthouse-plugin');
 
 module.exports = {
   module: {
@@ -9,67 +9,55 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'eslint-loader',
-        },
+          loader: "babel-loader"
+        }
       },
       {
         test: /\.html$/,
         use: [
           {
-            loader: 'html-loader',
-          },
-        ],
+            loader: "html-loader"
+          }
+        ]
       },
       {
         test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader'
             },
-          },
-        ],
-      },
-    ],
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                // options...
+              }
+            }
+          ]
+      }
+    ]
   },
-  resolve: {
-    extensions: ['*', '.js', '.jsx'],
-  },
-
   devServer: {
     historyApiFallback: true,
+    contentBase: './',
+    watchContentBase: true
+    // host:'0.0.0.0',
+    // port:8080,
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
+  performance: {
+    hints: false
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
+      template: "./public/index.html",
+      filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/mystyles.css',
-    }),
-    new BundleAnalyzerPlugin(),
-  ],
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all"
-        }
-      }
-    }
-  }
+      filename: 'css/mystyles.css'
+    })
+  ]
 };
