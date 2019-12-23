@@ -26,12 +26,11 @@ function App() {
         <ToastContainer/>
         <AuthContextProvider>
           <DataContextForProveedoresProvider>
-          <Route />
+          <Route/>
           <div>
             <BackTop>
               <div className="ant-back-top-inner">
               <Fab color="primary" aria-label="add">
-
                 <VerticalAlignTopIcon/>
                 </Fab>
               </div>
