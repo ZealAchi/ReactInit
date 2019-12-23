@@ -22,9 +22,9 @@ import Login from "./../../Pages/NoAuth/Login";
 import Register from "./../../Pages/NoAuth/Register";
 import { AuthContext } from '../../Context/AuthContext';
 export default function MenuAppBar() {
-  const Context = useContext(AuthContext)
+  const { isAuthenticated, logout, typeUser, isAdministrator } = useContext(AuthContext)
 
-  const { isAuthenticated, typeUser, isAdministrator } = Context
+  
 
   const classes = styleNavbar();
 
@@ -63,8 +63,9 @@ export default function MenuAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Mi Perfil</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My Cuenta</MenuItem>
+      <MenuItem onClick={()=>{handleMenuClose();logout();}}>Cerrar Sesión</MenuItem>
     </Menu>
   );
   const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -110,13 +111,13 @@ export default function MenuAppBar() {
 
   const OptionsLogin = (
     <>
-      <LinkMenu to="/blog">
+      <LinkMenu to="/blog" onClick={handleMenuClose}>
         <Button color="inherit" >Blog</Button>
       </LinkMenu>
-      <LinkMenu to="#" >
+      <LinkMenu to="#" onClick={handleMenuClose}>
         <Login />
       </LinkMenu>
-      <LinkMenu to="#">
+      <LinkMenu to="#" onClick={handleMenuClose}>
         <Register />
       </LinkMenu>
     </>
@@ -194,11 +195,6 @@ export default function MenuAppBar() {
                 <LinkMenu to="/blog">
                   <Button color="inherit" >Blog</Button>
                 </LinkMenu>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                  <Badge badgeContent={4} color="secondary">
-                    <MailIcon />
-                  </Badge>
-                </IconButton>
                 <IconButton aria-label="show 17 new notifications" color="inherit">
                   <Badge badgeContent={17} color="secondary">
                     <NotificationsIcon />
@@ -241,8 +237,7 @@ export default function MenuAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
-      {renderMenuUnregister}
+      {isAuthenticated ? renderMenu:renderMenuUnregister}
     </div>
   );
 }

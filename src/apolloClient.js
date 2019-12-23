@@ -1,21 +1,23 @@
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloClient } from "apollo-client";
-import { createHttpLink } from "apollo-link-http";
 
-const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql/",
+import { ApolloClient } from "apollo-client";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { withClientState } from "apollo-link-state";
+import { ApolloLink } from "apollo-link";
+
+import { typeDefs, defaults, resolvers } from "./clientState";
+
+const cache = new InMemoryCache();
+
+const stateLink = withClientState({
+  cache,
+  typeDefs,
+  defaults,
+  resolvers
 });
+
 const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-  onError: ({ networkError }) => {
-    if (networkError) {
-      console.log("Network Error", networkError);
-    }
-  },
-  headers: {
-    authorization: localStorage.getItem("token"),
-  },
+  cache,
+  link: ApolloLink.from([stateLink])
 });
 
 export default client;

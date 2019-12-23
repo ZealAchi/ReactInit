@@ -20,6 +20,7 @@ import BlogCrear from "../Pages/Blog/Crear"
 import MisPublicaciones from "../Pages/Blog/MisPubliciones";
 import AdminUsers from "../Pages/Auth/Admin/Usuarios";
 import Registro from '../Pages/NoAuth/Register/Tipo'
+import Proveedores from "../Pages/Auth/Proveedores";
 // import AdminUsersCrete from "../Pages/Auth/Admin/Usuarios/crear";
 export default memo(function Routes() {
   const Context = useContext(AuthContext)
@@ -27,7 +28,7 @@ export default memo(function Routes() {
   const { isAuthenticated, typeUser, isAdministrator } = Context
   console.log(isAuthenticated, typeUser)
   return (
-    <div style={{ background: 'rgb(233, 235, 236)' }}>
+    <div style={{ background: '#fff' }}>
       
         <Router>
         <Layout>
@@ -37,6 +38,7 @@ export default memo(function Routes() {
           <Route path="/Register/:id" render={() => <Registro />} />
             {/* <Route path="/login"  render={()=><SignIn/>} />  */}
             <Route path="/Blog" exact render={() => <Blog />} />
+            <Route path="/Proveedores" exact render={() => <Proveedores />} />
             <Route path="/Blog/Crear" render={() => {
               if (isAuthenticated) {
                 return <BlogCrear />

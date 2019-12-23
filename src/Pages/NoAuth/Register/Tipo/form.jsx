@@ -23,19 +23,16 @@ function FormRegister(props) {
 
     return (
         <>
-            <Box fontSize={16} bgcolor="text.secondary" color="background.paper" style={{ height: '10rem' }} p={2} m={1}>
-                <Box fontSize={28}>
-                    Registrate
-                </Box>
-            </Box>
+
             <Section>
                 <Box component="span" display="block" style={{ margin: '-22px' }} p={1} m={1} bgcolor={`#3f51b5`}>
                     <Column.Group multiline centered style={{ width: '100%', textAlign: '-webkit-center', display: 'flex', justifyContent: 'space-between', alignItems: ' stretch', margin: '-1.8em 0px 1em' }} breakpoint="mobile">
-                        <Column>
+                        <Column  size={6}>
                             <ConoceBeneficios />
-                        </Column><Column>
+                        </Column>
+                        <Column >
                             <Card>
-                                <Box fontSize={28} css={{ height: '37.4rem' }}>
+                                <Box fontSize={28} css={{ height: 'auto' }}>
                                     <Form layout='horizontal' >
                                         <Box fontSize={24}>
                                             {tipo}
@@ -48,47 +45,36 @@ function FormRegister(props) {
                                                 placeholder="Ingresa el Nombre de la publicación"
                                                 message={'El Nombre no puede ir  nulo'}
                                             />
-                                            <InputZ label="Nombre"
-                                                                                            getFieldDecorator={getFieldDecorator}
-
+                                            <Input 
+                                                getFieldDecorator={getFieldDecorator}
+                                                label="email"
                                                 placeholder="Ingresa el Nombre de la publicación"
                                                 message={'El Nombre no puede ir  nulo'} />
                                             <Input
                                                 getFieldDecorator={getFieldDecorator}
-                                                label="Nombre"
+                                                label="Correo"
                                                 placeholder="Ingresa el Nombre de la publicación"
                                                 message={'El Nombre no puede ir  nulo'}
                                             />
                                             <Input
                                                 getFieldDecorator={getFieldDecorator}
-                                                label="Nombre"
+                                                label="Telefono"
                                                 placeholder="Ingresa el Nombre de la publicación"
                                                 message={'El Nombre no puede ir  nulo'}
                                             />
                                             <Input
                                                 getFieldDecorator={getFieldDecorator}
-                                                label="Nombre"
+                                                label="Contraseña"
                                                 placeholder="Ingresa el Nombre de la publicación"
                                                 message={'El Nombre no puede ir  nulo'}
                                             />
-                                            <Input
+                                            <InputZ
                                                 getFieldDecorator={getFieldDecorator}
-                                                label="Nombre"
+                                                label="sitioWeb"
                                                 placeholder="Ingresa el Nombre de la publicación"
                                                 message={'El Nombre no puede ir  nulo'}
                                             />
-                                            <Input
-                                                getFieldDecorator={getFieldDecorator}
-                                                label="Nombre"
-                                                placeholder="Ingresa el Nombre de la publicación"
-                                                message={'El Nombre no puede ir  nulo'}
-                                            />
-                                            <Input
-                                                getFieldDecorator={getFieldDecorator}
-                                                label="Nombre"
-                                                placeholder="Ingresa el Nombre de la publicación"
-                                                message={'El Nombre no puede ir  nulo'}
-                                            />
+
                                         </Box>
                                     </Form>
                                 </Box>

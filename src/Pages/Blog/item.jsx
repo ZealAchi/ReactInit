@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -19,6 +19,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import { AuthContext } from '../../Context/AuthContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function MediaCard({ title, description, user, date, image }) {
+  const { isAuthenticated } = useContext(AuthContext)
 
   const classes = useStyles();
 
@@ -52,11 +54,12 @@ export default function MediaCard({ title, description, user, date, image }) {
             </ListItemAvatar>
             <ListItemText primary={user ? user : 'Praxis'}
               secondary={date ? date : 'Jan 9, 2020'} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="Eliminar">
+              {isAuthenticated&&<ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="Eliminar" onClick={()=>alert('Peligro')}>
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
+              }
           </ListItem>
         </List>
         <CardMedia
@@ -80,9 +83,10 @@ export default function MediaCard({ title, description, user, date, image }) {
         <Button size="small" color="primary">
           Ver más
         </Button>
-        <IconButton edge="end" aria-label="comments">
+        {isAuthenticated&&
+        <IconButton edge="end" aria-label="comments" onClick={()=>alert('Peligro')}>
           <EditIcon />
-        </IconButton>
+        </IconButton>}
       </CardActions>
     </Card>
   );
