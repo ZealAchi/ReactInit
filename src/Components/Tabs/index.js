@@ -8,7 +8,6 @@ export default function Tabs({ datos }) {
             {datos.map((dato, index) => {
                 return (
                     <TabPane tab={dato.title} key={index}>
-                        {console.log(dato)}
                         <dato.content />
                     </TabPane>
                 )

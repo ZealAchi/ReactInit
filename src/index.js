@@ -16,7 +16,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { Fab } from '@material-ui/core';
 import { ToastContainer } from 'react-toastify'
-import DataContextForProveedoresProvider from "./Pages/Auth/Proveedores/Form/formContext";
+import DataContextForProveedoresProvider from "./Pages/Auth/Proveedores/Cotizaciones/Form/formContext";
 
 function App() {
   return (
@@ -26,8 +26,7 @@ function App() {
         <ToastContainer/>
         <AuthContextProvider>
           <DataContextForProveedoresProvider>
-          <Route/>
-          <div>
+          <Route>
             <BackTop>
               <div className="ant-back-top-inner">
               <Fab color="primary" aria-label="add">
@@ -35,7 +34,7 @@ function App() {
                 </Fab>
               </div>
             </BackTop>
-          </div>
+          </Route>
           <Query query={GET_NOTES}>{() => null}</Query>
           </DataContextForProveedoresProvider>
         </AuthContextProvider>

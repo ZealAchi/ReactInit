@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
-
+import {Link} from 'react-router-dom'
 import { Button as ButtonA } from 'antd';
 import { Button, Box } from '@material-ui/core';
 import styled from "styled-components";
 import { VectorMap } from '@south-paw/react-vector-maps';
 
-import worldLowRes from '../Maps/world.json'
-import Mexico from '../Maps/mexico.json'
+import worldLowRes from '../../Maps/world.json'
+import Mexico from '../../Maps/mexico.json'
 import { DataContextForProveedores } from './formContext.jsx';
-import { Column } from 'rbx'
+import { Column, Divider } from 'rbx'
 
 export const InfoMapa = ({ Mapa }) => {
   const { visible, ChangeVisible, estado, pais, hovered } = useContext(DataContextForProveedores)
@@ -29,9 +29,11 @@ export const InfoMapa = ({ Mapa }) => {
           </Button>
         </Column>
         <Column size="one-quarter" style={{ textAlign: 'end' }}>
+        <Link to="/Cotización/Proyecto/Nuevo">
           <ButtonA type="primary" style={{ margin: 3, background: 'rgba(41, 130, 27, 0.75)', color: '#fff' }}>
             {'Crear Proyecto'}
           </ButtonA>
+        </Link>
           <ButtonA type="primary" onClick={ChangeVisible} style={{ margin: 3 }}>
             {'Volver al mapa'}
           </ButtonA>
@@ -51,7 +53,7 @@ export default function () {
   const { visible, estado, pais, hovered, layerPropsEstados, layerPropsPais } = useContext(DataContextForProveedores)
   return (<>
     <InfoMapa Mapa={'Mapa'} />
-    <Box bgcolor="background.paper" m={1} style={{ display: 'flex', justifyContent: 'flex-end', borderBottom: '1px solid #ccc', alignItems: 'stretch' }}>
+    <Box bgcolor="background.paper" m={1} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch' }}>
       <Button type='primary' component="span" block>
         {pais === undefined ? 'Proyectos Activos en el Mundo :8' :
           estado === undefined ? 'Proyectos Activos en el Pais :2' : `Proyectos activos en ${estado}: 2`
@@ -59,6 +61,8 @@ export default function () {
       </Button>
 
     </Box>
+    <Divider color="black"></Divider>
+
     <Box css={{ display: `${visible ? '' : 'none'}` }}>
       <Map>
         {pais === undefined ? <MapNew {...worldLowRes} currentLayers={['mx-oax']} layerProps={layerPropsPais} style={{ display: 'inline-block' }} />

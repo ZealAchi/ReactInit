@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Form, Upload, Icon, Button } from 'antd';
 import { InputAntd as Input } from '../../../Components/Input';
+import {
+    BrowserRouter as Router,
+    useLocation,
+    Redirect
+} from "react-router-dom";
+
 import { Button as Button2 } from '@material-ui/core';
 function RegistrationForm(props) {
     const { getFieldDecorator } = props.form;
@@ -16,6 +22,19 @@ function RegistrationForm(props) {
         setState({...state, image:e.file.thumbUrl})
         return e && e.fileList;
     };
+
+
+    let tipo;
+    let location = useLocation();
+    // /blog/misPublicaciones/Editars
+    console.log()
+
+    if(location.pathname.toString().substr(23)==='Editar'){
+        var actualizar=true
+    }
+    // console.log(location.pathname.toString().substr(10) === 'Proveedor')
+     
+
     return (
         <div style={{ background: '#ECECEC', textAlign: 'left' }}>
 
@@ -52,7 +71,7 @@ function RegistrationForm(props) {
                         </Upload>,
                     )}
                 </Form.Item>
-                <Button2 variant="contained" color="primary">Crear Publicación</Button2>
+                <Button2 variant="contained" color="primary">{actualizar?'Actualizar Publicación':'Crear Publicación'}</Button2>
 
             </Card>
 
@@ -64,5 +83,3 @@ function RegistrationForm(props) {
 
 
 export default Form.create({ name: 'RegistrationForm' })(RegistrationForm);
-
-

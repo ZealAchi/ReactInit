@@ -11,12 +11,9 @@ export default function MisPublicaciones() {
                 <Column.Group multiline centered style={{ width: '100%', textAlign: '-webkit-center',display: 'flex',justifyContent: 'space-between', alignItems:' stretch', margin: '-1.8em 0px 1em' }} breakpoint="mobile">
                 {[1, 2, 3, 4].map(i => (
                     <Column key={i}>
-                    {/* <Notification color="primary" textAlign="centered"> */}
                     <Box component="span" m={1}>
                         <Item miPublicacion="true" />
                     </Box>
-                
-                    {/* </Notification> */}
                     </Column>
                 ))}
                 </Column.Group>

@@ -8,12 +8,12 @@ export const AuthContext = createContext();
 function AuthContextProvider(props,context){
   const {children}=props
   const [state,setState] =useState({
-    isAuthenticated: false,
-    isAdministrator: false,
+    isAuthenticated: true,
+    isAdministrator: true,
     isMaster: true,
     token:'21345678',
     password:'12345678',
-    typeUser:'Constructora',
+    typeUser:'Proveedor',
     user:'luis'
   })
 

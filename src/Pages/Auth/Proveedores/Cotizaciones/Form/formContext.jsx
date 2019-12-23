@@ -13,6 +13,7 @@ function DataContextForProveedoresProvider(props, context) {
         focused: ''
     })
     const [visible, setVisible] = useState(true)
+    const [effect, setEffect] = useState('fade')
 
     function ChangeVisible(){
         setVisible(!visible)
@@ -51,7 +52,7 @@ function DataContextForProveedoresProvider(props, context) {
     }
 
     return (
-        <DataContextForProveedores.Provider value={{ ...state,visible,ChangeVisible:ChangeVisible, layerPropsEstados: layerPropsEstados, layerPropsPais: layerPropsPais, seleccionarPais: seleccionarPais, seleccionarEstado: seleccionarEstado }}>
+        <DataContextForProveedores.Provider value={{ ...state,visible,effect,ChangeVisible:ChangeVisible, layerPropsEstados: layerPropsEstados, layerPropsPais: layerPropsPais, seleccionarPais: seleccionarPais, seleccionarEstado: seleccionarEstado }}>
             {children}
         </DataContextForProveedores.Provider>
     );

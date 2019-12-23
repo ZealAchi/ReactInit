@@ -20,7 +20,9 @@ import BlogCrear from "../Pages/Blog/Crear"
 import MisPublicaciones from "../Pages/Blog/MisPubliciones";
 import AdminUsers from "../Pages/Auth/Admin/Usuarios";
 import Registro from '../Pages/NoAuth/Register/Tipo'
-import Proveedores from "../Pages/Auth/Proveedores";
+import Proveedores from "../Pages/Auth/Proveedores/";
+import CotizacionCrearProyecto from "../Pages/Auth/Proveedores/Cotizaciones/Proyecto/crear";
+
 // import AdminUsersCrete from "../Pages/Auth/Admin/Usuarios/crear";
 export default memo(function Routes() {
   const Context = useContext(AuthContext)
@@ -34,7 +36,21 @@ export default memo(function Routes() {
         <Layout>
           <Switch>
 
-          <Route path="/" exact render={() => <UnRegistered />} />
+          <Route path="/" exact render={() =>{
+            if(typeUser==='Proveedor'){
+              return <Proveedores />
+            }else{
+              return <UnRegistered />
+            }
+          }} />
+          <Route path="/Cotización/Proyecto/Nuevo" exact render={() =>{
+            if(typeUser==='Proveedor'){
+              return <CotizacionCrearProyecto />
+            }else{
+              return <NoMatch />
+            }
+          }} />
+          
           <Route path="/Register/:id" render={() => <Registro />} />
             {/* <Route path="/login"  render={()=><SignIn/>} />  */}
             <Route path="/Blog" exact render={() => <Blog />} />
@@ -75,18 +91,6 @@ export default memo(function Routes() {
               }
             }
             } />
-            {/* <Route path="/admin/users/crear" render={() => {
-              if (isAuthenticated) {
-                if (isAdministrator) {
-                  return <AdminUsersCrete/>
-                } else {
-                  return <Redirect to='/blog' />
-                }
-              } else {
-                return <Redirect to='/blog' />
-              }
-            }
-            } /> */}
             <Route path="*">
               <NoMatch />
             </Route>
@@ -96,3 +100,7 @@ export default memo(function Routes() {
     </div>
   );
 })
+
+const ConstructorasRouter=(<></>)
+const ProveedoresRouter=(<></>)
+const AdministrarRouter=(<></>)

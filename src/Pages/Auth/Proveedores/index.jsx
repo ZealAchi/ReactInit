@@ -2,10 +2,7 @@ import React,{useContext} from "react";
 import { Tabs } from 'antd';
 import Cotizaciones from './Cotizaciones';
 import { Column } from 'rbx'
-import Form from './Form'
 import { Box } from "@material-ui/core";
-
-// import {  } from "./../Proveedores";
 const { TabPane } = Tabs;
 export default function Proveedores() {
 
@@ -14,12 +11,11 @@ export default function Proveedores() {
 
       <Tabs type="card">
         <TabPane tab="Contizaciones" key="1"  style={{ textAlign: 'center' }}>
-          <Box className="card-container"   style={{ background:'azure' }}>
-            <Form/>
+          <Box className="card-container"   style={{ background:'#fff' }}>
 
+            <Cotizaciones />
           </Box>
 
-          {/* <Cotizaciones /> */}
         </TabPane>
         <TabPane tab="Subastas" key="2">
           <p>Content of Tab Pane 2</p>
