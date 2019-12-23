@@ -4,6 +4,7 @@ import {Container,Divider, Hero, Title,Column, Section, Message} from 'rbx'
 // import Cards from '../../Components/Cards'
 import Carrusel from './../NoAuth/Carrusel'
 import Styled from 'styled-components'
+import Tabs from '../../Components/Tabs'
 export default function UnRegistered(){
     return(
         <Container>
@@ -16,10 +17,22 @@ export default function UnRegistered(){
             </HeroLanging>
 
             <Carrusel img={imagenes}/>
+
+            {/* https://spike.sh/images/services/video.png */}
+            <Divider color="warning">Nuestros Colaboradores</Divider>
+            <Column.Group>
+                <Column>
+                    <Tabs datos={datos}/>
+                </Column>
+                <Column>
+
+                </Column>
+            </Column.Group>
+            
             <Divider color="warning">Nuestros Colaboradores</Divider>
 
             
-            <Carrusel img={Colaboradores}/>
+            
             <Column.Group>
                 <Column>
                     <Message color="success">
@@ -51,25 +64,32 @@ const HeroLanging = Styled(Hero)`
     background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 `
 
-
-const Colaboradores=[
-    {
-        class:'',
-        img:"https://onebitcode.com/wp-content/uploads/2018/02/logo1-600px.png",
-        alt:''
-
-    }
-]
-
 const imagenes=[
     {
       class: "d-block w-100",
       img:"https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg",
-      alt:"First slide"
+      alt:"First slide",
+      title:'Titulo uno',
+      subtitle:'Subtitulo uno',
+      width:''
     },
     {
       class: "d-block w-100",
       img:"https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg",
-      alt:"First slide"
+      alt:"First slide",
+      title:'Titulo dos',
+      subtitle:'Subtitulo dos',
+      width:''
     }
   ]
+
+  const Content=()=>(
+    <>Jelouder:D</>
+)
+const Content2=()=>(
+    <>Jelouder de Nuevo XD</>
+)
+const datos=[
+    {title:"Email",content:Content},
+    {title:"Cellphone",content:Content2}
+]
