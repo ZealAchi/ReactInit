@@ -11,13 +11,20 @@ import { Box } from '@material-ui/core';
 import Prueba from './Formulario';
 
 
-export default function MaxWidthDialog() {
-  
+export default function ({visible}) {
+
 
   return (
-    <>hola
-
-              <Prueba />
+    <>
+      <Link to="/Cotización/Proyecto/Nuevo">
+        <Button type="primary" style={{ display: `${visible ? '' : 'none'}`, margin: 3, background: 'rgba(41, 130, 27, 0.75)', color: '#fff' }}>
+          {'Crear Proyecto'}
+        </Button>
+      </Link>
+      <Box style={{ display: `${visible ? 'none' : ''}`}}>
+      <Prueba />
+      </Box>
+      
 
     </>
   );
