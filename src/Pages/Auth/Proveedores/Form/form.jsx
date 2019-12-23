@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Form, Input, Button, Col, Row, Select, InputNumber, DatePicker, AutoComplete, Cascader } from 'antd';
+import { Form, Input, Button, Select, } from 'antd';
 
 import { DataContextForProveedores } from './formContext';
 import { Column } from 'rbx'
@@ -20,7 +20,6 @@ const Filtro1 = (
             <Option value="Option1-3">Construcción industrial</Option>
             <Option value="Option1-4">Construcción obras públicas</Option>
             <Option value="Option1-5">Construcción institucional</Option>
-            <Option value="Option1-6">Construcción comercial</Option>
             <Option value="Option1-7">Compra/renta de maquinaria </Option>
         </Select>
     </InputGroup>
@@ -96,8 +95,6 @@ export default function () {
                <br />
                 <Button type="primary" onClick={ChangeVisible}>
                     {visible?'Ver Resultados':'Volver al mapa'}
-
-                    
                 </Button>
 
             </Form>

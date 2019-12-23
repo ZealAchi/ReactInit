@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-
+import { Button as ButtonA } from 'antd';
 import { Button, Box } from '@material-ui/core';
 import styled from "styled-components";
 import { VectorMap } from '@south-paw/react-vector-maps';
@@ -8,37 +8,48 @@ import { VectorMap } from '@south-paw/react-vector-maps';
 import worldLowRes from '../Maps/world.json'
 import Mexico from '../Maps/mexico.json'
 import { DataContextForProveedores } from './formContext.jsx';
+import { Column } from 'rbx'
 
-export const InfoMapa = ({Mapa}) => {
+export const InfoMapa = ({ Mapa }) => {
   const { visible, estado, pais, hovered } = useContext(DataContextForProveedores)
-  return(
-  <Box bgcolor="background.paper" m={1} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'stretch' }}>
-    <div >
-    {visible&&Mapa&&<Button component="span">
+  return (
+    <Box bgcolor="background.paper" m={1} style={{ textAlign: 'left', display: `${visible && Mapa ?'flex':null}`, justifyContent: `${visible && Mapa ? 'space-between' : 'start'}`, alignItems: 'stretch' }}>
+
+      {visible && Mapa && <div > <Button component="span">
         Seleccionar {hovered && hovered}
-      </Button>}
-    </div>
-    {!visible&&!Mapa? <div>
-      <Button component="span">
-        Pais: {pais === undefined ? ' ' : pais}
-      </Button>
-      <Button component="span">
-        Estado: {estado === undefined ? ' ' : estado}
-      </Button>
-    </div>:visible&&Mapa& <div>
-      <Button component="span">
-        Pais: {pais === undefined ? ' ' : pais}
-      </Button>
-      <Button component="span">
-        Estado: {estado === undefined ? ' ' : estado}
-      </Button>
-    </div>}
-  </Box>
-)}
+      </Button></div>}
+
+      {!visible && !Mapa ? <Column.Group>
+        <Column >
+          <Button component="span">
+            Pais: {pais === undefined ? ' ' : pais}
+          </Button>
+          <Button component="span">
+            Estado: {estado === undefined ? ' ' : estado}
+          </Button>
+        </Column>
+        <Column size="one-quarter" style={{    textAlign: 'end'}}>
+          <ButtonA type="primary" style={{background:'rgba(41, 130, 27, 0.75)',color:'#fff'}}>
+            {'Crear Proyecto'}
+          </ButtonA>
+        </Column>
+      </Column.Group> : visible && Mapa && <div>
+        <Button component="span">
+          Pais: {pais === undefined ? ' ' : pais}
+        </Button>
+        <Button component="span">
+          Estado: {estado === undefined ? ' ' : estado}
+        </Button>
+
+
+      </div>}
+    </Box>
+  )
+}
 export default function () {
   const { visible, estado, pais, hovered, layerPropsEstados, layerPropsPais } = useContext(DataContextForProveedores)
   return (<>
-    <InfoMapa Mapa={'Mapa'}/>
+    <InfoMapa Mapa={'Mapa'} />
     <Box bgcolor="background.paper" m={1} style={{ display: 'flex', justifyContent: 'flex-end', borderBottom: '1px solid #ccc', alignItems: 'stretch' }}>
       <Button type='primary' component="span" block>
         {pais === undefined ? 'Proyectos Activos en el Mundo :8' :

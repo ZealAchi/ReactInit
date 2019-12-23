@@ -64,7 +64,7 @@ export default function MenuAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Mi Perfil</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Cuenta</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Mi Cuenta</MenuItem>
       <MenuItem onClick={()=>{handleMenuClose();logout();}}>Cerrar Sesión</MenuItem>
     </Menu>
   );

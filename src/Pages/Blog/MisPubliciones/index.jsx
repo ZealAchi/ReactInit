@@ -13,7 +13,7 @@ export default function MisPublicaciones() {
                     <Column key={i}>
                     {/* <Notification color="primary" textAlign="centered"> */}
                     <Box component="span" m={1}>
-                        <Item editar={true} eliminar={true} />
+                        <Item miPublicacion="true" />
                     </Box>
                 
                     {/* </Notification> */}

@@ -47,6 +47,14 @@ export default memo(function Routes() {
               }
             }}
             />
+            <Route path="/blog/misPublicaciones/Editar" render={() => {
+              if (isAuthenticated) {
+                return <BlogCrear />
+              } else {
+                return <Redirect to='/blog' />
+              }
+            }}
+            />
             <Route path="/Blog/MisPublicaciones" render={() => {
               if (isAuthenticated) {
                 return <MisPublicaciones />

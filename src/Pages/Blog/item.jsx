@@ -7,7 +7,6 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import Divider from '@material-ui/core/Divider';
-
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -20,7 +19,11 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { AuthContext } from '../../Context/AuthContext';
+import { Modal } from 'antd';
+import {toast} from 'react-toastify'
+import { Link } from 'react-router-dom'
 
+const { confirm } = Modal;
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
@@ -37,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function MediaCard({ title, description, user, date, image }) {
+export default function MediaCard({ title, description, user, date, image, miPublicacion }) {
   const { isAuthenticated } = useContext(AuthContext)
 
   const classes = useStyles();
@@ -54,8 +57,8 @@ export default function MediaCard({ title, description, user, date, image }) {
             </ListItemAvatar>
             <ListItemText primary={user ? user : 'Praxis'}
               secondary={date ? date : 'Jan 9, 2020'} />
-              {isAuthenticated&&<ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="Eliminar" onClick={()=>alert('Peligro')}>
+              {isAuthenticated&&miPublicacion&&<ListItemSecondaryAction>
+              <IconButton edge="end" aria-label="Eliminar" onClick={showDeleteConfirm} type="dashed">
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
@@ -83,11 +86,29 @@ export default function MediaCard({ title, description, user, date, image }) {
         <Button size="small" color="primary">
           Ver más
         </Button>
-        {isAuthenticated&&
-        <IconButton edge="end" aria-label="comments" onClick={()=>alert('Peligro')}>
+        {isAuthenticated&&miPublicacion&&
+        <Link to="/blog/misPublicaciones/Editar">
+        <IconButton edge="end" aria-label="comments">
           <EditIcon />
-        </IconButton>}
+        </IconButton>
+        </Link>}
       </CardActions>
     </Card>
   );
+}
+
+
+function showDeleteConfirm() {
+  confirm({
+    title: '¿Estás seguro de eliminar esta pulbicacion?',
+    okText: 'Si, estoy seguro',
+    okType: 'danger',
+    cancelText: 'No',
+    onOk() {
+      toast.success('Se ah eliminado tu publicación.')
+    },
+    onCancel() {
+      console.log('Cancel');
+    },
+  });
 }

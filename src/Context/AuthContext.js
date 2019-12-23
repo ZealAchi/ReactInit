@@ -10,6 +10,7 @@ function AuthContextProvider(props,context){
   const [state,setState] =useState({
     isAuthenticated: false,
     isAdministrator: false,
+    isMaster: true,
     token:'21345678',
     password:'12345678',
     typeUser:'Constructora',
@@ -18,7 +19,6 @@ function AuthContextProvider(props,context){
 
   function handleChange(name,valor) {
     event.preventDefault();
-    console.log(name,valor)
     if(name==='username')
     setState({...state, user:valor})
     if(name==='password')
