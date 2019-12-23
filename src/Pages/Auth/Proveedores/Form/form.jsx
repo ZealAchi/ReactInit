@@ -19,8 +19,7 @@ const Filtro1 = (
             <Option value="Option1-2">Construcción comercial</Option>
             <Option value="Option1-3">Construcción industrial</Option>
             <Option value="Option1-4">Construcción obras públicas</Option>
-            <Option value="Option1-5">Construcción institucional</Option>
-            <Option value="Option1-7">Compra/renta de maquinaria </Option>
+            <Option value="Option1-5">Compra/renta de maquinaria </Option>
         </Select>
     </InputGroup>
 );
@@ -76,6 +75,15 @@ export default function () {
 
     return (<>
         <Form layout={formLayout}>
+        <Column.Group>
+            
+            <Column size={3}offset={7} style={{textAlign: 'end'}}>
+                <Button type="primary" style={{ display: `${visible ? '' : 'none'}`, margin: 3, background: 'rgba(41, 130, 27, 0.75)', color: '#fff' }}>
+                    {'Crear Proyecto'}
+                </Button>
+                
+            </Column>
+            </Column.Group>
             <Box css={{ display: `${visible ? '' : 'none'}` }}>
                 <Form.Item label="Pais" {...formItemLayout}>
                     <Input placeholder="Selecciona un Pais en el Mapa" disabled value={pais} />
@@ -93,13 +101,18 @@ export default function () {
                 <br />
                 Se Encontraron 10 Cotizaciones
                <br />
-                <Button type="primary" onClick={ChangeVisible}>
-                    {visible?'Ver Resultados':'Volver al mapa'}
-                </Button>
-
+                {visible && <Button type="primary" onClick={ChangeVisible}>
+                    Ver Resultados
+                </Button>}
+                {!visible &&<ListItems/>
+                }
             </Form>
         </Form>
-
     </>)
 }
 
+const ListItems=()=>{
+    return(<><Box color="text.primary" clone>
+    <Button >Jeloud</Button>      
+</Box></>)
+}

@@ -5,6 +5,8 @@ import Map, { InfoMapa } from './map'
 import Form from './form'
 import { DataContextForProveedores } from "./formContext";
 
+
+
 export default function Proveedores() {
     const { visible } = useContext(DataContextForProveedores)
     
@@ -15,6 +17,7 @@ export default function Proveedores() {
         <Column>
             <InfoMapa />
             <Form />
+            
         </Column>
     </Column.Group>)
 }

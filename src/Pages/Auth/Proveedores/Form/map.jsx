@@ -11,9 +11,9 @@ import { DataContextForProveedores } from './formContext.jsx';
 import { Column } from 'rbx'
 
 export const InfoMapa = ({ Mapa }) => {
-  const { visible, estado, pais, hovered } = useContext(DataContextForProveedores)
+  const { visible, ChangeVisible, estado, pais, hovered } = useContext(DataContextForProveedores)
   return (
-    <Box bgcolor="background.paper" m={1} style={{ textAlign: 'left', display: `${visible && Mapa ?'flex':null}`, justifyContent: `${visible && Mapa ? 'space-between' : 'start'}`, alignItems: 'stretch' }}>
+    <Box bgcolor="background.paper" m={1} style={{ textAlign: 'left', display: `${visible && Mapa ? 'flex' : null}`, justifyContent: `${visible && Mapa ? 'space-between' : 'start'}`, alignItems: 'stretch' }}>
 
       {visible && Mapa && <div > <Button component="span">
         Seleccionar {hovered && hovered}
@@ -28,9 +28,12 @@ export const InfoMapa = ({ Mapa }) => {
             Estado: {estado === undefined ? ' ' : estado}
           </Button>
         </Column>
-        <Column size="one-quarter" style={{    textAlign: 'end'}}>
-          <ButtonA type="primary" style={{background:'rgba(41, 130, 27, 0.75)',color:'#fff'}}>
+        <Column size="one-quarter" style={{ textAlign: 'end' }}>
+          <ButtonA type="primary" style={{ margin: 3, background: 'rgba(41, 130, 27, 0.75)', color: '#fff' }}>
             {'Crear Proyecto'}
+          </ButtonA>
+          <ButtonA type="primary" onClick={ChangeVisible} style={{ margin: 3 }}>
+            {'Volver al mapa'}
           </ButtonA>
         </Column>
       </Column.Group> : visible && Mapa && <div>
@@ -40,8 +43,6 @@ export const InfoMapa = ({ Mapa }) => {
         <Button component="span">
           Estado: {estado === undefined ? ' ' : estado}
         </Button>
-
-
       </div>}
     </Box>
   )
@@ -70,7 +71,7 @@ export default function () {
 
 
 const MapNew = styled(VectorMap)`
-${props => console.log(props.layers)}
+/* ${props => console.log(props.layers)} */
 `
 const Map = styled.div`
   margin: 1rem auto;
