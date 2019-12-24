@@ -61,7 +61,7 @@ export default function () {
       </Button>
 
     </Box>
-    <Divider color="black"></Divider>
+    <Divider color="black"/>
 
     <Box css={{ display: `${visible ? '' : 'none'}`, boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}>
       <Map>

@@ -18,9 +18,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 
 const useStyles = makeStyles(theme => ({
-    card: {
-      width: '25rem',
-    },
+    // card: {
+    //   width: '25rem',
+    // },
     
     media: {
         height: 0,
@@ -41,10 +41,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function ItemProyecto({item}) {
+export default function ItemProyecto({item,crear}) {
     const { Proyecto, Imagen, Descripción, CondicionesPago } = item
-    console.log(item)
-    console.log(Proyecto)
+
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -53,7 +52,7 @@ export default function ItemProyecto({item}) {
     };
 
     return (
-        <Card className={classes.card}>
+        <Card className={classes.card} style={{ width:`${!crear?'20rem':'auto'}`  }}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>

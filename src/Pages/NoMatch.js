@@ -21,7 +21,7 @@ export default function NoMatch() {
 </div>
 <div className="errorRight">
   <div className="tips">
-    <p className="tipsTitle">页面出错了</p>
+    <p className="tipsTitle">La página salió mal</p>
     <p className="errorTips">
     La página que visitó no existe. Confirme el enlace y vuelva a intentarlo. En caso de emergencia, vaya a 
     <a href="https://www.google.com">www.google.com</a>para obtener ayuda.</p>

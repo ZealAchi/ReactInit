@@ -195,6 +195,9 @@ export default function MenuAppBar() {
                 <LinkMenu to="/blog">
                   <Button color="inherit" >Blog</Button>
                 </LinkMenu>
+                <LinkMenu to="/DashBoard">
+                  <Button color="inherit" >Mi DashBoard</Button>
+                </LinkMenu>
                 <IconButton aria-label="show 17 new notifications" color="inherit">
                   <Badge badgeContent={17} color="secondary">
                     <NotificationsIcon />

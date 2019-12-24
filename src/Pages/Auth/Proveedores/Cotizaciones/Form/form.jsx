@@ -47,7 +47,7 @@ export const Filtros = (
             "&:hover": {
                 boxShadow: ' 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'
             }
-        }} ><Divider color='black'></Divider>
+        }} ><Divider color='black'/>
             <Column.Group style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch' }}>
                 <Column>
                     <label>Filtrar por tipos de construcción</label>
@@ -64,7 +64,7 @@ export const Filtros = (
                     {Filtro2}
                 </Column>
             </Column.Group >
-            <Divider color='black'></Divider>
+            <Divider color='black'/>
         </Hero>
 
     </>)
