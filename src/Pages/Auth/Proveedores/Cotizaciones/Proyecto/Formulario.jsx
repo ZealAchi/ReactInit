@@ -1,97 +1,114 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 
 import { Button } from 'uxcore';
-import { Form } from 'uxcore';
-import { Icon } from 'uxcore';
-import { Tooltip } from 'uxcore';
+import { Form } from 'uxcore'
 import { Select } from 'antd';
+import { Box } from '@material-ui/core';
+import { Column, Hero } from 'rbx';
+import { Uploader } from 'uxcore';
 
 const { Option } = Select;
 
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-
-
-
 export default function Prueba() {
-    const {
-        InputFormField: Input,
-        DateFormField: Date,
-        TextAreaFormField: TextArea,
-        OtherFormField,
-        SelectFormField,
-        Validators,
-      } = Form;
-      const [state,setState]=useState({
-        mode:true
-      })
-      function handleModeChange(values, name) {
-        console.log(values[name]);
-        setState({
-          mode: values[name] === 'true',
-        });
-      }
-      function handleSubmit() {
-        console.log('asd');
-      }
-    return (<>
+  const {
+    InputFormField: Input,
+    DateFormField: Date,
+    TextAreaFormField: TextArea,
+    OtherFormField,
+    SelectFormField,
+    Validators,
+  } = Form;
+  const [state, setState] = useState({
+    mode: true,
+    fileList: [],
+  })
+  function handleModeChange(values, name) {
+    console.log(values[name]);
+    setState({
+      mode: values[name] === 'true',
+    });
+  }
+  function handleSubmit() {
+    console.log('asd');
+  }
+  function handleChange(fileList) {
+    setState({
+      fileList,
+    });
+  }
+  const tips = <span className="tips">Limitado a 0.5M <em>（formatos admitidos：.doc; .docx; .xls; .xlsx）</em></span>;
 
-<div className="demo-validator">
-        <Form className="form-select" jsxvalues={{ mode: 'true' }} jsxonChange={handleModeChange}>
-          <SelectFormField jsxdata={{ true: '实时校验', false: '非实时校验' }} jsxname="mode" jsxlabel="校验模式" showSearch={false} />
-        </Form>
-        <Form  className="demo-basic-form" instantValidate={state.mode}>
-          <Input
-            jsxname="theme"
-            jsxlabel="主题"
-            required
-            jsxtips="这是一个提示"
-            jsxplaceholder="请输入主题"
-            jsxrules={[
-              { validator: Validators.isNotEmpty, errMsg: '不能为空' },
-              { validator(value) { return value.length <= 3; }, errMsg: '不能超过3个字' },
-            ]}
-          />
-          <Input
-            jsxname="location"
-            jsxlabel="地点"
-            required
-            jsxplaceholder="请输入地点"
-            jsxrules={[
-              { validator: Validators.isNotEmpty, errMsg: '不能为空' },
-            ]}
-          />
-          <Date jsxname="date" jsxlabel="时间" jsxtype="cascade" autoMatchWidth />
-          <TextArea
-            jsxname="content"
-            jsxlabel="内容"
-            required
-            jsxrules={[
-              { validator: Validators.isNotEmpty, errMsg: '不能为空' },
-            ]}
-          />
-          <OtherFormField>
-            <Button style={{ marginLeft: '88px', marginTop: '16px' }} onClick={handleSubmit}>确定</Button>
-          </OtherFormField>
-        </Form>
+  return (
+    <Hero color="light" style={{
+      paddingTop: '51px',
+      marginBottom: '1rem',
+      backgroundColor: ' #ecf0f1',
+      borderRadius: '0.3rem',
+      paddingRight: '2rem',
+      paddingLeft: '14px',
+      marginRight: 'auto',
+      marginLeft: 'auto',
+    }} >
+      <Column.Group>
+        <Box m={1} css={{ padding: 5  }}>
+            <Column >
+              <div className="demo-validator">
+                <Form className="form-select" jsxvalues={{ mode: 'Selecciona un tipo de Proyecto' }} jsxonChange={handleModeChange}>
+                  <SelectFormField jsxdata={{ tipo1: 'residencial', tipo2: 'comercial', tipo3: 'industrial', tipo4: 'obras publicas', tipo5: 'industrial' }} jsxname="mode" jsxlabel="Tipo de Proyecto" showSearch={false} />
+                </Form>
+                <Form className="demo-basic-form" instantValidate={state.mode}>
+                  <Input
+                    jsxname="theme"
+                    jsxlabel="Nombre del proyecto"
+                    required
+                    jsxplaceholder="Ingresa el nombre del Proyecto"
+                    jsxrules={[
+                      { validator: Validators.isNotEmpty, errMsg: 'No puede estar vacío' },
+                      { validator(value) { return value.length <= 10; }, errMsg: 'No más de 10 palabras' },
+                    ]}
+                  />
+                  <Input
+                    jsxname="location"
+                    jsxlabel="Lugar"
+                    required
+                    jsxplaceholder="Ingresa la Ubicación de Entrega"
+                    jsxrules={[
+                      { validator: Validators.isNotEmpty, errMsg: 'No puede estar vacío' },
+                    ]}
+                  />
+                </Form>
+                <div >
+                  <h2>Suba una Imagen</h2>
+                  <Uploader
+                    style={{ padding: 10 }}
+                    multiple={false}
+                    isOnlyImg={false}
+                    tips={tips}
+                    fileList={state.fileList}
+                    onChange={handleChange}
+                    name="file"
+                    url="http://eternalsky.me:8122/file/upload"
+                    locale="en"
+                  />
+                </div>
 
-        <div>
-    <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-      <Option value="jack">Jack</Option>
-      <Option value="lucy">Lucy</Option>
-      <Option value="disabled" disabled>
-        Disabled
-      </Option>
-      <Option value="Yiminghe">yiminghe</Option>
-    </Select>
-    <Select defaultValue="lucy" style={{ width: 120 }} disabled>
-      <Option value="lucy">Lucy</Option>
-    </Select>
-    <Select defaultValue="lucy" style={{ width: 120 }} loading>
-      <Option value="lucy">Lucy</Option>
-    </Select>
-  </div>,
-      </div>
-    </>)
+                <br />
+                Condiciones de pago  - % Anticipo - % Contraentrega - % Crédito por ___ días
+<br />
+                - Materiales/lotes ( se permite agregar varios) - Categoría  - Nombre del material/lote
+ <br />
+
+                - Fecha límite  - Cantidad  - Unidad de medida - Fichas técnicas ( adjunta) - opción de agregar planos
+ <br />
+                <OtherFormField>
+                  <Button style={{ marginLeft: '88px', marginTop: '16px' }} onClick={handleSubmit}>Crear proyecto</Button>
+                </OtherFormField>
+
+              </div>
+            </Column>
+            <Column>
+            </Column>
+
+        </Box>
+      </Column.Group></Hero>)
 }

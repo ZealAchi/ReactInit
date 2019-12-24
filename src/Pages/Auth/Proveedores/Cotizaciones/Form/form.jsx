@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react'
 import { Form, Input, Button, Select, } from 'antd';
 
 import { DataContextForProveedores } from './formContext';
-import { Column, Divider } from 'rbx'
+import { Column, Divider, Hero } from 'rbx'
 import { Box } from '@material-ui/core';
 import { Animate } from 'uxcore';
 import { Select as uxSelect } from 'uxcore';
-import CrearProyecto from '../Proyecto/crear'
+
+import { Link } from 'react-router-dom'
+
 const { uxOption } = uxSelect;
 
 const InputGroup = Input.Group;
@@ -15,7 +17,7 @@ const { Search } = Input;
 
 const Filtro1 = (
     <InputGroup compact style={{ paddingLeft: 10, display: 'flex' }}>
-        <Select style={{ width: '70%' }} defaultValue="">
+        <Select style={{ width: '100%' }} defaultValue="">
             <Option value="Option1-1">Construcción residencial</Option>
             <Option value="Option1-2">Construcción comercial</Option>
             <Option value="Option1-3">Construcción industrial</Option>
@@ -26,7 +28,7 @@ const Filtro1 = (
 );
 const Filtro2 = (
     <InputGroup compact style={{ paddingLeft: 10, display: 'flex' }}>
-        <Select style={{ width: '70%' }} defaultValue="">
+        <Select style={{ width: '100%' }} defaultValue="">
             <Option value="Option1-1">Material</Option>
             <Option value="Option1-7">Lote</Option>
         </Select>
@@ -35,24 +37,36 @@ const Filtro2 = (
 
 export const Filtros = (
     <>
-        <Divider color='black'></Divider>
-        <Column.Group style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch' }}>
-            <Column>
-                <label title="Filtrar por Tipos de construcción">Filtrar por tipos de construcción</label>
-            </Column>
-            <Column size={8}>
-                {Filtro1}
-            </Column>
-        </Column.Group>
-        <Column.Group style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch' }}>
-            <Column >
-                <label>Filtrar por Categoria</label>
-            </Column>
-            <Column size={8}>
-                {Filtro2}
-            </Column>
-        </Column.Group >
-        <Divider color='black'></Divider>
+
+        <Hero color="light" style={{
+            borderRadius: '0.3rem',
+            paddingRight: '2rem',
+            paddingLeft: '14px',
+            marginRight: 'auto',
+            boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
+            "&:hover": {
+                boxShadow: ' 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'
+            }
+        }} ><Divider color='black'></Divider>
+            <Column.Group style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch' }}>
+                <Column>
+                    <label>Filtrar por tipos de construcción</label>
+                </Column>
+                <Column size={8}>
+                    {Filtro1}
+                </Column>
+            </Column.Group>
+            <Column.Group style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch' }}>
+                <Column >
+                    <label>Filtrar por Categoria</label>
+                </Column>
+                <Column size={8}>
+                    {Filtro2}
+                </Column>
+            </Column.Group >
+            <Divider color='black'></Divider>
+        </Hero>
+
     </>)
 
 export default function ({ children }) {
@@ -95,7 +109,11 @@ export default function ({ children }) {
         <Form layout={formLayout} style={{ background: '#fff' }}>
             <Column.Group  >
                 <Column size={3} offset={7} style={{ textAlign: 'end' }}>
-                    <CrearProyecto visible={visible}/>
+                    <Link to="/Cotizacion/Proyecto/Nuevo">
+                        <Button type="primary" style={{ display: `${visible ? '' : 'none'}`, margin: 3, background: 'rgba(41, 130, 27, 0.75)', color: '#fff' }}>
+                            {'Crear Proyecto'}
+                        </Button>
+                    </Link>
                 </Column>
             </Column.Group>
             <Box css={{ display: `${visible ? '' : 'none'}` }}>

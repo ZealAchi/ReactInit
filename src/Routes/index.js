@@ -43,7 +43,7 @@ export default memo(function Routes() {
               return <UnRegistered />
             }
           }} />
-          <Route path="/Cotización/Proyecto/Nuevo" exact render={() =>{
+          <Route path="/Cotizacion/Proyecto/Nuevo" exact render={() =>{
             if(typeUser==='Proveedor'){
               return <CotizacionCrearProyecto />
             }else{

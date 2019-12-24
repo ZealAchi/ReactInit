@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button as ButtonA } from 'antd';
 import { Button, Box } from '@material-ui/core';
 import styled from "styled-components";
@@ -29,11 +29,11 @@ export const InfoMapa = ({ Mapa }) => {
           </Button>
         </Column>
         <Column size="one-quarter" style={{ textAlign: 'end' }}>
-        <Link to="/Cotización/Proyecto/Nuevo">
-          <ButtonA type="primary" style={{ margin: 3, background: 'rgba(41, 130, 27, 0.75)', color: '#fff' }}>
-            {'Crear Proyecto'}
-          </ButtonA>
-        </Link>
+          <Link to="/Cotizacion/Proyecto/Nuevo">
+            <ButtonA type="primary" style={{ margin: 3, background: 'rgba(41, 130, 27, 0.75)', color: '#fff' }}>
+              {'Crear Proyecto'}
+            </ButtonA>
+          </Link>
           <ButtonA type="primary" onClick={ChangeVisible} style={{ margin: 3 }}>
             {'Volver al mapa'}
           </ButtonA>
@@ -63,7 +63,7 @@ export default function () {
     </Box>
     <Divider color="black"></Divider>
 
-    <Box css={{ display: `${visible ? '' : 'none'}` }}>
+    <Box css={{ display: `${visible ? '' : 'none'}`, boxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)' }}>
       <Map>
         {pais === undefined ? <MapNew {...worldLowRes} currentLayers={['mx-oax']} layerProps={layerPropsPais} style={{ display: 'inline-block' }} />
           : <MapNew {...pais === 'Mexico' ? Mexico : worldLowRes} checkedLayers={['mx-ver', 'mx-dur']} layerProps={layerPropsEstados} currentLayers={['mx-oax']} style={{ display: 'inline-block' }} />

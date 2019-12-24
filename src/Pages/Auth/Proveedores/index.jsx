@@ -12,7 +12,6 @@ export default function Proveedores() {
       <Tabs type="card">
         <TabPane tab="Contizaciones" key="1"  style={{ textAlign: 'center' }}>
           <Box className="card-container"   style={{ background:'#fff' }}>
-
             <Cotizaciones />
           </Box>
 

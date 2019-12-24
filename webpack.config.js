@@ -1,6 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WebpackLighthousePlugin = require('webpack-lighthouse-plugin');
+var path = require('path');
 
 module.exports = {
   module: {
@@ -44,9 +45,11 @@ module.exports = {
     ]
   },
   devServer: {
+    contentBase: path.join(__dirname, 'dist'),
     historyApiFallback: true,
     contentBase: './',
-    watchContentBase: true
+    watchContentBase: true,
+    compress: true,
     // host:'0.0.0.0',
     // port:8080,
   },
