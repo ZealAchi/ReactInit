@@ -7,7 +7,7 @@ import Styled from 'styled-components'
 import Tabs from '../../Components/Tabs'
 export default function UnRegistered(){
     return(
-        <Container>
+        <>
             <HeroLanging gradient >
             <Hero.Body>
                 <Container>
@@ -49,12 +49,8 @@ export default function UnRegistered(){
                         </Message.Body>
                     </Message>
                 </Column>
-                
             </Column.Group>
-        </Container>
-
-
-
+        </>
     )   
 }
 

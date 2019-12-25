@@ -1,6 +1,6 @@
 import { BackTop } from "antd";
 import React from "react";
-import { ApolloProvider as ApolloProvider1 } from "react-apollo";
+
 import { Query } from "react-apollo";
 import ReactDOM from "react-dom";
 import "./../node_modules/mdbreact/dist/css/style.css";
@@ -20,7 +20,6 @@ import DataContextForProveedoresProvider from "./Pages/Auth/Proveedores/Cotizaci
 
 function App() {
   return (
-    <ApolloProvider1 client={client}>
       <ApolloProvider client={client}>
         <CssBaseline />
         <ToastContainer/>
@@ -39,7 +38,7 @@ function App() {
           </DataContextForProveedoresProvider>
         </AuthContextProvider>
       </ApolloProvider>
-    </ApolloProvider1>
+
   );
 }
 ReactDOM.render(<App />, document.getElementById("root"));

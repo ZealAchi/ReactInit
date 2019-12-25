@@ -1,10 +1,13 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import { AuthContext } from '../../../Context/AuthContext';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-
+import gql from "graphql-tag";
 import { makeStyles } from '@material-ui/core/styles';
-
+import { Mutation } from "react-apollo";
+import { toast } from 'react-toastify'
 import Card from '@material-ui/core/Card';
+
+
 const useStyles = makeStyles({
     card: {
         minWidth: 275,
@@ -26,10 +29,23 @@ function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 function LoginContent({ form }) {
+
+
+    const LOGIN = gql`
+    mutation($email: String!, $password: String!) {
+      login(input:{email: $email, password: $password}) {
+        token
+      }
+    }
+  `;
+
+    
+    
     const Context = useContext(AuthContext)
     const { handleSubmit, handleChange } = useContext(AuthContext);
     const { user, password } = Context
 
+    const email=user
     const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = form;
 
     useEffect(() => {
@@ -86,12 +102,26 @@ function LoginContent({ form }) {
                         })(<Checkbox>Recordar</Checkbox>)}
                         <a className="login-form-forgot" href="">
                             Se te olvidó tu contraseña
-          </a></div>
+                      </a>
+                    </div>
 
                     <div>
-                        <Button type="primary" htmlType="submit" block className="login-form-button" onClick={handleSubmit}>
-                            Iniciar Sesión
-                        </Button>
+                        <Mutation mutation={LOGIN} variables={{ email, password }}>
+                            {(login, { data, loading, error }) => {
+                                // if(error){
+                                //     toast.error(error.graphQLErrors[0].message)
+                                // }
+                                return <>
+                                    <Button type="primary" block
+                                        disabled={loading}
+                                        htmlType="submit" className="login-form-button"
+                                        onClick={event => { handleSubmit(event, login) }}>
+                                        Iniciar Sesión
+                                    </Button>
+                                </>
+
+                            }}
+                        </Mutation>
                     </div>
                     Ó <a href="">Registrate ahora!</a>
 
@@ -100,6 +130,11 @@ function LoginContent({ form }) {
         </Card>
     )
 }
+   
+
 const WrappedHorizontalLoginForm = Form.create({ name: 'LoginContent' })(LoginContent);
 
 export default WrappedHorizontalLoginForm
+
+
+export const Error=({error})=><p>{error.message}</p>
