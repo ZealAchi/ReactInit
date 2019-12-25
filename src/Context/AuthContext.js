@@ -1,70 +1,74 @@
-import React, { useState,createContext } from 'react';
-import { toast } from 'react-toastify';
-
+import jwt from "jsonwebtoken";
+import React, { useState, createContext } from "react";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 
-
-function AuthContextProvider(props,context){
-  const {children}=props
-  const [state,setState] =useState({
+function AuthContextProvider(props, context) {
+  const { children } = props;
+  const [state, setState] = useState({
     isAuthenticated: false,
-    isAdministrator: false,
+    isAdmin: false,
     isMaster: false,
-    token:'',
-    password:'127as127',
-    typeUser:'',
-    user:'naite@mail.com'
-  })
+    name: "",
+    lastName: "",
+    token: "",
+    password: "",
+    typeUser: "",
+    user: "",
+  });
 
-  function handleChange(name,valor) {
+  function handleChange(name, valor) {
     event.preventDefault();
-    if(name==='username')
-    setState({...state, user:valor})
-    if(name==='password')
-    setState({...state, password:valor})
+    if (name === "username") setState({ ...state, user: valor });
+    if (name === "password") setState({ ...state, password: valor });
   }
-  function logout(name,valor) {
-    setState({
-      ...state,
-      token:"",
-      typeUser:'',
-      isAdministrator:false,
-      isAuthenticated:false
-    });
+  function logout() {
+    clearState();
+  }
+  function clearState() {
+    setState({ ...state, user: '' });
+    setState({ ...state, password: '' });
   }
 
-    function handleSubmit(event, signupUser) {
-    event.preventDefault();    
-    
-    signupUser().then(async ({ data }) => {
-        const {login}=data
-        console.log(login)
-        console.log(data)
-        console.log(data)
+  function handleSubmit(event, signupUser) {
+    event.preventDefault();
+
+    signupUser()
+      .then(async ({ data }) => {
+        const { login } = data;
+        const decoded = jwt.verify(login.token, "10Naaaite10");
+        localStorage.setItem("token", login.token);
+        console.log(decoded);
         setState({
           ...state,
-          token:login.token,
-          isAuthenticated:login
+          token: login.token,
+          isAuthenticated: true,
+          isAdmin: decoded.isAdmin,
+          typeUser: decoded.role,
+          name: decoded.role,
+          lastName: decoded.role,
+          user:'',
+          password:''
         });
+
+        // await this.props.refetch();
         
-        
+        // this.props.history.push('/');
+
         //localStorage.setItem('token', data.signupUser.token);
         //await this.props.refetch();
         // clearState();
         // this.props.history.push('/Bldgs');
         //  history.push('/')
-    }).catch(error=>{
-      try {
-        toast.error(error.graphQLErrors[0].message)  
-      } catch (error) {
-        console.log(error)
-      }
-      
-
-    }
-    )
-    
+      })
+      .catch(error => {
+        try {
+          toast.error(error.graphQLErrors[0].message);
+        } catch (error) {
+          console.log(error);
+        }
+      });
   }
 
   // function handleSubmit(){
@@ -101,13 +105,14 @@ function AuthContextProvider(props,context){
   //     toast.error("Algo salio mal.");
   //   }
   // }
-  
-    return (
-      <AuthContext.Provider value={{...state,handleChange:handleChange,handleSubmit,logout}}>
-        {children}
-      </AuthContext.Provider>
-    );
-  
+
+  return (
+    <AuthContext.Provider
+      value={{ ...state, handleChange: handleChange, handleSubmit, logout }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
- 
+
 export default AuthContextProvider;
