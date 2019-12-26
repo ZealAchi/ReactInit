@@ -131,3 +131,13 @@
   font-size: 20px;
 }
 
+.cifrasImage{
+  background: url('https://cdn.civitatis.com/japon/tokio/guia/informacion-general.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 360px;
+  padding-top: 130px;
+  padding-bottom: 120px
+}
