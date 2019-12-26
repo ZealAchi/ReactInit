@@ -101,7 +101,8 @@ const Root=({ })=>{
 </div>)
 }
 export default memo(function Routes() {
-  return <Root/>
+  // return <Root/>
+  return <RootWithSession/>
 })
 
-// const RootWithSession=withSession(Root)
+const RootWithSession=withSession(Root)

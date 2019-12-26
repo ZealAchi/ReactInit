@@ -31,7 +31,7 @@ function AuthContextProvider(props, context) {
     setState({ ...state, password: '' });
   }
 
-  function handleSubmit(event, signupUser) {
+  function handleSubmit(event, signupUser,history) {
     event.preventDefault();
 
     signupUser()
@@ -60,11 +60,16 @@ function AuthContextProvider(props, context) {
         //await this.props.refetch();
         // clearState();
         // this.props.history.push('/Bldgs');
-        //  history.push('/')
+         history.push('/')
       })
       .catch(error => {
         try {
-          toast.error(error.graphQLErrors[0].message);
+          
+          if(error.graphQLErrors[0].message){
+            toast.error(error.graphQLErrors[0].message);
+          }else{
+            console.log(error)
+          }
         } catch (error) {
           console.log(error);
         }

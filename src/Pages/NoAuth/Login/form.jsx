@@ -4,8 +4,8 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import gql from "graphql-tag";
 import { makeStyles } from '@material-ui/core/styles';
 import { Mutation } from "react-apollo";
-import { toast } from 'react-toastify'
 import Card from '@material-ui/core/Card';
+import { useHistory } from "react-router-dom";
 
 
 const useStyles = makeStyles({
@@ -30,7 +30,7 @@ function hasErrors(fieldsError) {
 }
 function LoginContent({ form }) {
 
-
+    let history = useHistory()
     const LOGIN = gql`
     mutation($email: String!, $password: String!) {
       login(input:{email: $email, password: $password}) {
@@ -115,7 +115,7 @@ function LoginContent({ form }) {
                                     <Button type="primary" block
                                         disabled={loading}
                                         htmlType="submit" className="login-form-button"
-                                        onClick={event => { handleSubmit(event, login) }}>
+                                        onClick={event => { handleSubmit(event, login,history) }}>
                                         Iniciar Sesión
                                     </Button>
                                 </>
