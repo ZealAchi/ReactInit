@@ -4,6 +4,7 @@ import { Modal } from 'antd';
 
 import { AuthContext } from './../../../Context/AuthContext';
 import WrappedHorizontalLoginForm from './form'
+
 export default function Login() {
     const { isAuthenticated } = useContext(AuthContext);
 

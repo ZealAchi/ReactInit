@@ -1,13 +1,15 @@
 import React from 'react'
-import {SectionNews} from '../../helpers/ConstRouters'
-import {Container,Divider, Hero, Title,Column, Section, Message} from 'rbx'
-// import Cards from '../../Components/Cards'
-import Carrusel from './../NoAuth/Carrusel'
 import Styled from 'styled-components'
-import Tabs from '../../Components/Tabs'
+import {Container,Divider, Hero, Title,Column, Section, Message} from 'rbx'
+import Carrusel from './../NoAuth/Carrusel'
+import Heros from './components/Hero'
+import datos, {cifras} from "./../../helpers/landingPage"
+import Beneficios from './components/Hero/beneficios'
+import Cifras from './components/Hero/cifras'
 export default function UnRegistered(){
     return(
-        <Container>
+        <>
+        
             <HeroLanging gradient >
             <Hero.Body>
                 <Container>
@@ -15,54 +17,23 @@ export default function UnRegistered(){
                 </Container>
             </Hero.Body>
             </HeroLanging>
-
             <Carrusel img={imagenes}/>
 
-            {/* https://spike.sh/images/services/video.png */}
-            <Divider color="warning">Nuestros Colaboradores</Divider>
-            <Column.Group>
-                <Column>
-                    <Tabs datos={datos}/>
-                </Column>
-                <Column>
-
-                </Column>
-            </Column.Group>
-            
-            <Divider color="warning">Nuestros Colaboradores</Divider>
-
-            
-            
-            <Column.Group>
-                <Column>
-                    <Message color="success">
-                        <Message.Body>
-                        <strong>MISIÓN</strong>, Agilizar el proceso de adquisición de materiales constructivos en tiempo, precio y calidad.
-                        </Message.Body>
-                    </Message>
-                </Column>
-                <Divider vertical/>
-                <Column>
-                    <Message color="primary">
-                        <Message.Body>
-                        <strong>VISIÓN</strong>, Ser la plataforma líder a nivel mundial en el área de la construcción y conectar la mayor cantidad de usuarios con proyectos de gran alcance y proveedores de talla internacional.
-                        </Message.Body>
-                    </Message>
-                </Column>
-                
-            </Column.Group>
-        </Container>
-
-
-
+            <Heros color="white" textAlign="centered">                
+                <Beneficios titulo="Beneficios" subtitulo="Hazlo en linea desde cualquier parte del mundo." contenido={datos} boxHeight="9.5rem"/>
+            </Heros>
+            <Heros clase="cifrasImage">
+                <Cifras contenido={cifras}/>
+            </Heros>
+        </>
     )   
 }
-
 
 const HeroLanging = Styled(Hero)`
     background-color: '#1fc8db';
     background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
 `
+
 
 const imagenes=[
     {
@@ -82,14 +53,3 @@ const imagenes=[
       width:''
     }
   ]
-
-  const Content=()=>(
-    <>Jelouder:D</>
-)
-const Content2=()=>(
-    <>Jelouder de Nuevo XD</>
-)
-const datos=[
-    {title:"Email",content:Content},
-    {title:"Cellphone",content:Content2}
-]

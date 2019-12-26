@@ -71,7 +71,7 @@ export const Filtros = (
 
 export default function ({ children }) {
 
-    console.log(children)
+    
     const { pais, estado, ChangeVisible, visible, effect } = useContext(DataContextForProveedores)
     const [formLayout] = useState('horizontal')
 
