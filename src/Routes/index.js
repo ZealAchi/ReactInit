@@ -22,6 +22,7 @@ import Registro from '../Pages/NoAuth/Register/Tipo'
 import Proveedores from "../Pages/Auth/Proveedores/";
 import CotizacionCrearProyecto from "../Pages/Auth/Proveedores/Cotizaciones/Proyecto/crear";
 import withSession from "../withSession";
+import Subastas from "../Pages/Subastas";
 
 // import AdminUsersCrete from "../Pages/Auth/Admin/Usuarios/crear";
 const Root=({ })=>{
@@ -36,7 +37,7 @@ const Root=({ })=>{
   <Router>
   <Layout>
     <Switch>
-
+    <Route path="/Subastas" exact render={() => <Subastas />} />
     <Route path="/" exact render={() =>{
       if(typeUser==='Proveedor'){
         return <Proveedores />

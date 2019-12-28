@@ -19,7 +19,7 @@ import { setContext } from 'apollo-link-context';
 // });
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: "http://192.168.6.57:3001/graphql",
 });
 const client = new ApolloClient({
   // link: authLink.concat(httpLink),

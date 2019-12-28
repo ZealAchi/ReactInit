@@ -191,7 +191,9 @@ export default function MenuAppBar() {
                   <Button color="inherit" >Administrar Usuarios</Button>
                 </LinkMenu>)
                 }
-
+                <LinkMenu to="/Subastas">
+                  <Button color="inherit" >Subastas</Button>
+                </LinkMenu>
                 <LinkMenu to="/blog">
                   <Button color="inherit" >Blog</Button>
                 </LinkMenu>
