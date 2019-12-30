@@ -2,7 +2,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient } from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
 import { setContext } from 'apollo-link-context';
-
+import {toast} from 'react-toastify'
 
 
 
@@ -19,7 +19,8 @@ import { setContext } from 'apollo-link-context';
 // });
 
 const httpLink = createHttpLink({
-  uri: "http://192.168.6.57:3001/graphql",
+  // uri: "http://192.168.6.57:3001/graphql",
+  uri: "http://localhost:3001/graphql",
 });
 const client = new ApolloClient({
   // link: authLink.concat(httpLink),
@@ -28,7 +29,8 @@ const client = new ApolloClient({
   
   onError: ({ networkError }) => {
     if (networkError) {
-      console.log("Network Error", networkError);
+      // console.log("Network Error", networkError);
+      toast.error('No se puedo establecer una conexión con el servidor!')
     }
   },
   headers: {

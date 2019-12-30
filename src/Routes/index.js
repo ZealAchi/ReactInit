@@ -20,6 +20,7 @@ import MisPublicaciones from "../Pages/Blog/MisPubliciones";
 import AdminUsers from "../Pages/Auth/Admin/Usuarios";
 import Registro from '../Pages/NoAuth/Register/Tipo'
 import Proveedores from "../Pages/Auth/Proveedores/";
+import Constructoras from "../Pages/Auth/Constructoras";
 import CotizacionCrearProyecto from "../Pages/Auth/Proveedores/Cotizaciones/Proyecto/crear";
 import withSession from "../withSession";
 import Subastas from "../Pages/Subastas";
@@ -51,6 +52,10 @@ const Root=({ })=>{
       }else{
         return <NoMatch />
       }
+    }} />
+    <Route path="/Constructora" exact render={() =>{
+      // if(typeUser==='Proveedor'){
+        return <Constructoras />    
     }} />
     
     <Route path="/Register/:id" render={() => <Registro />} />

@@ -6,8 +6,9 @@ import { Column, Divider, Hero } from 'rbx'
 import { Box } from '@material-ui/core';
 import { Animate } from 'uxcore';
 import { Select as uxSelect } from 'uxcore';
+import { EffectContext } from '../../../../../Context/EffectContext';
 
-import { Link } from 'react-router-dom'
+
 
 const { uxOption } = uxSelect;
 
@@ -47,7 +48,7 @@ export const Filtros = (
             "&:hover": {
                 boxShadow: ' 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'
             }
-        }} ><Divider color='black'/>
+        }} ><Divider color='black' />
             <Column.Group style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'stretch' }}>
                 <Column>
                     <label>Filtrar por tipos de construcción</label>
@@ -64,17 +65,16 @@ export const Filtros = (
                     {Filtro2}
                 </Column>
             </Column.Group >
-            <Divider color='black'/>
+            <Divider color='black' />
         </Hero>
 
     </>)
 
 export default function ({ children }) {
-
-    
-    const { pais, estado, ChangeVisible, visible, effect } = useContext(DataContextForProveedores)
+    const { pais, estado,visible } = useContext(DataContextForProveedores)
     const [formLayout] = useState('horizontal')
-
+    const {visible:visibleEffect,effect,showComponent}=useContext(EffectContext)
+    
     const formItemLayout =
         formLayout === 'horizontal'
             ? {
@@ -82,51 +82,22 @@ export default function ({ children }) {
                 wrapperCol: { span: 14 },
             }
             : null;
-    const effects = ['fade', 'slideRight', 'slideDown', 'newspaper', 'fall', 'threeFallH', 'threeFallV', 'threeSign', 'superScale', 'threeSlit', 'threeRotateBottom', 'threeRotateLeft'];
-
-
-
-    const [state, setState] = useState({
-        visible: true,
-        effect: 'fade',
-    })
-    function showComponent() {
-        setState({
-            ...state,
-            visible: !state.visible,
-        });
-        ChangeVisible()
-    }
-
-    function handleChange(value) {
-        setState({
-            ...state,
-            effect: value,
-        });
-    }
 
     return (<>
         <Form layout={formLayout} style={{ background: '#fff' }}>
-            <Column.Group  >
-                <Column size={3} offset={7} style={{ textAlign: 'end' }}>
-                    <Link to="/Cotizacion/Proyecto/Nuevo">
-                        <Button type="primary" style={{ display: `${visible ? '' : 'none'}`, margin: 3, background: 'rgba(41, 130, 27, 0.75)', color: '#fff' }}>
-                            {'Crear Proyecto'}
-                        </Button>
-                    </Link>
-                </Column>
-            </Column.Group>
-            <Box css={{ display: `${visible ? '' : 'none'}` }}>
-                <Form.Item label="Pais" {...formItemLayout}>
-                    <Input placeholder="Selecciona un Pais en el Mapa" disabled value={pais} />
-                </Form.Item>
-                <Form.Item label="Estado" {...formItemLayout}>
-                    <Input placeholder="Selecciona un Estado en el Mapa" disabled value={estado} />
-                </Form.Item>
-                <Form.Item label="Busca" {...formItemLayout}>
-                    <Search placeholder="Buscar por palabra clave..." onSearch={value => console.log(value)} enterButton />
-                </Form.Item>
-            </Box>
+        <Animate showProp="visible" transitionName={effect} transitionAppear>
+                <Box css={{ display: `${!visibleEffect ? '' : 'none'}` }}>
+                    <Form.Item label="Pais" {...formItemLayout}>
+                        <Input placeholder="Selecciona un Pais en el Mapa" disabled value={pais} />
+                    </Form.Item>
+                    <Form.Item label="Estado" {...formItemLayout}>
+                        <Input placeholder="Selecciona un Estado en el Mapa" disabled value={estado} />
+                    </Form.Item>
+                    <Form.Item label="Busca" {...formItemLayout}>
+                        <Search placeholder="Buscar por palabra clave..." onSearch={value => console.log(value)} enterButton />
+                    </Form.Item>
+                </Box>
+        </Animate>
             <Form >
                 {Filtros}
                 <br />
@@ -134,33 +105,26 @@ export default function ({ children }) {
                 Se Encontraron 10 Cotizaciones
                <br />
 
-                {visible && <Button type="primary" onClick={showComponent}>
-                    Ver Resultados
+                {visible && <Button type={visibleEffect?'primary':'second'} onClick={showComponent}>
+                    {!visibleEffect?'Ver Resultados':'Regresar al mapa'}
                 </Button>}
-                {!visible && children}
-
+                
                 <div>
-                    <div style={{ height: '60px' }}>
-                        <Animate showProp="visible" transitionName={state.effect} transitionAppear>
-                            <AwesomeComponent visible={state.visible} />
+                <Animate showProp="visible" transitionName={effect} transitionAppear>
+                            <AwesomeComponent visible={visibleEffect} children={children}/>
                         </Animate>
-                    </div>
-                    <div style={{ padding: '10px 0px' }}>
-                        <Select style={{ width: '200px' }} placeholder="切换动画效果" value={state.effect}>
-                            {effects.map(item => <Option key={item}>{item}</Option>)}
-                        </Select>
-                        <Button type="outline" onClick={showComponent} style={{ marginLeft: '10px' }}>显示/隐藏</Button>
-                    </div>
                 </div>
             </Form>
         </Form>
     </>)
 }
 
-function AwesomeComponent(props) {
+
+function AwesomeComponent({children,visible}) {
+    
     return (
-        <div style={{ display: props.visible ? 'inline-block' : 'none' }} className="awesome-component-wrap bg-primary-color">
-            动画展示区域
+        <div style={{ display: visible ? 'inline-block' : 'none' }} className="awesome-component-wrap">
+             {children}
       </div>
     );
 

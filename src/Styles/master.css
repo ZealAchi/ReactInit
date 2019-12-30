@@ -54,7 +54,7 @@
       position: relative;
       z-index: 0;
       
-      /* font-family: 'Hackman' !important;  */
+      font-family: 'Roboto' !important; 
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
       
@@ -237,4 +237,7 @@
   min-height: 360px;
   padding-top: 130px;
   padding-bottom: 120px
+}
+*{
+font-family: 'Roboto' !important; 
 }

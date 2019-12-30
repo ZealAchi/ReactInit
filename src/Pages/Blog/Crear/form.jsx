@@ -27,7 +27,7 @@ function RegistrationForm(props) {
     let tipo;
     let location = useLocation();
     // /blog/misPublicaciones/Editars
-    console.log()
+    // console.log()
 
     if(location.pathname.toString().substr(23)==='Editar'){
         var actualizar=true
