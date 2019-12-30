@@ -76,8 +76,8 @@ export default function index() {
               </Column>
             </Column.Group>
             <Animate showProp="visible" transitionName={state.effect} transitionAppear>
-              <Filters  visible={state.visible}/>
-              </Animate>
+              <Filters visible={state.visible} />
+            </Animate>
           </Box>
 
           <Box component="span" display="block" p={1} m={1} bgcolor="background.paper">
@@ -107,16 +107,21 @@ export default function index() {
 function Filters({ visible }) {
 
   return (
-    
-    <div class="container" style={{ display: visible ? '' : 'none' }} style={{ background: 'transparent'  }}>
-  <div class="notification">
-  
-        <CustomizedRadios/>
-    
-  </div>
-</div>
-      
-    
+
+    <div class="container" style={{ display: visible ? '' : 'none' }} style={{ background: 'transparent' }}>
+      <div class="notification">
+        <Column.Group>
+        <Column>
+            <CustomizedRadios />
+          </Column>
+          <Column>
+            <CustomizedRadios />
+          </Column>
+        </Column.Group>
+      </div>
+    </div>
+
+
 
   );
 
