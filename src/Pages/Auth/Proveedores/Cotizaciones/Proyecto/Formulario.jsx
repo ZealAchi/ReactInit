@@ -161,7 +161,7 @@ export default function Prueba() {
   const tips = <span className="tips">Limitado a 0.5M <em>（formatos admitidos：.doc; .docx; .xls; .xlsx）</em></span>;
 
   return (
-    <Hero color="light" style={{
+    <Hero color="white" style={{
       paddingTop: '51px',
       marginBottom: '1rem',
       backgroundColor: ' #ecf0f1',

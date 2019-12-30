@@ -39,7 +39,7 @@ const Filtro2 = (
 export const Filtros = (
     <>
 
-        <Hero color="light" style={{
+        <Hero color="white" style={{
             borderRadius: '0.3rem',
             paddingRight: '2rem',
             paddingLeft: '14px',

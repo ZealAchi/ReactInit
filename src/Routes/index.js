@@ -42,12 +42,16 @@ const Root=({ })=>{
     <Route path="/" exact render={() =>{
       if(typeUser==='Proveedor'){
         return <Proveedores />
-      }else{
+      }else if(typeUser==='Constructora'){
+        return <Constructoras />
+      }
+
+      else{
         return <UnRegistered />
       }
     }} />
     <Route path="/Cotizacion/Proyecto/Nuevo" exact render={() =>{
-      if(typeUser==='Proveedor'){
+      if(typeUser==='Constructora'){
         return <CotizacionCrearProyecto />
       }else{
         return <NoMatch />
