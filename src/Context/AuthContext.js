@@ -3,32 +3,34 @@ import React, { useState, createContext } from "react";
 import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
-
+const DataInit={
+  isAuthenticated: false,
+  isAdmin: false,
+  isMaster: false,
+  name: "",
+  lastName: "",
+  token: "",
+  user:"luis@mail.com",
+  password: "127as127",
+  typeUser: "",
+  user: "",
+}
 function AuthContextProvider(props, context) {
   const { children } = props;
-  const [state, setState] = useState({
-    isAuthenticated: false,
-    isAdmin: false,
-    isMaster: false,
-    name: "",
-    lastName: "",
-    token: "",
-    password: "",
-    typeUser: "",
-    user: "",
-  });
+  const [state, setState] = useState(DataInit);
 
   function handleChange(name, valor) {
     event.preventDefault();
     if (name === "username") setState({ ...state, user: valor });
     if (name === "password") setState({ ...state, password: valor });
   }
-  function logout() {
+  function logout(DataInit) {
+    setState();
     clearState();
+    
   }
   function clearState() {
-    setState({ ...state, user: '' });
-    setState({ ...state, password: '' });
+    setState({ ...state, user: '', });
   }
 
   function handleSubmit(event, signupUser,history) {
@@ -71,7 +73,8 @@ function AuthContextProvider(props, context) {
             console.log(error)
           }
         } catch (error) {
-          console.log(error);
+          toast.error('No se pudo establecer una conexión segura con el servidor!');
+          // console.log(error);
         }
       });
   }

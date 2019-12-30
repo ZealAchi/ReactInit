@@ -54,16 +54,11 @@ export default function FormRegister(props) {
         <>
 
             <Section>
-                <Box component="span" display="block" style={{ margin: '-22px' }} p={1} m={1} bgcolor={`#3f51b5`}>
+                <Box component="span" display="block" p={1} m={2}>
                     <Column.Group multiline centered style={{ width: '100%', textAlign: '-webkit-center', display: 'flex', justifyContent: 'space-between', alignItems: ' stretch', margin: '-1.8em 0px 1em' }} breakpoint="mobile">
-                        <Column size={6}>
-                            <ConoceBeneficios />
-                        </Column>
                         <Column >
                             <Card>
                                 <Box fontSize={28} css={{ height: 'auto' }}>
-
-
                                 <div className="demo-validator">
         <Form className="form-select" jsxvalues={{ mode: 'true' }} jsxonChange={handleModeChange}>
           <SelectFormField jsxdata={{ true: '实时校验', false: '非实时校验' }} jsxname="mode" jsxlabel="校验模式" showSearch={false} />
@@ -160,45 +155,3 @@ export default function FormRegister(props) {
     )
 }
 
-
-
-function ConoceBeneficios() {
-    return (
-        <><Card>
-            <Box fontSize={28}>
-                Conoce los beneficios
-        </Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>Los años de experiencia en el sector de la construcción por parte del equipo han llevado a crear esta nueva herramienta, CoSupplies.</Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                CoSupplies nace como herramienta que facilita la comunicación entre compradores y proveedores, del sector de la construcción, de una manera sencilla y ágil a través de una plataforma que los pone en contacto, mostrando los proyectos demandados, por parte de los compradores y la cotización ofrecida a dichos proyectos por parte de los proveedores, realizando ofertas en precios, calidad y tiempos de envío.
-</Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                Accede a la herramienta de subasta inversa proporcionadas por las empresas constructoras y compradoras.                        </Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                Presenta tu cotización a los proyectos que mejor se adapten a tu oferta y consulta el estado de tu cotización.
-</Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                Aumenta tu facturación.
-</Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                No gastes en buscar nuevos proyectos,ahorra en el departamento de ventas y encuéntralos todos en una plataforma.                        </Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                Accede al mercado internacional.
-</Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                Facilitamos el contacto con agentes aduanales.
-</Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                Compradores serios filtrados oficialmente por el equipo CoSupplies.
-</Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                Se valorado por las empresas con las que trabajas para que todos sepan la calidad de tu servicio.
- </Box>
-            <Box fontSize={16} css={{ textAlign: 'justify!important' }} m={1}>
-                Accede a las licitaciones del gobierno.
-</Box>
-        </Card>
-
-        </>
-    )
-}

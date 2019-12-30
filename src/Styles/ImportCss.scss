@@ -1,5 +1,4 @@
 @charset "utf-8";
-@import "~bulma/bulma";
 @import "~rbx/index.css";
 @import '~react-toastify/dist/ReactToastify.css';
 @import '~zent/css/index.css';
@@ -8,6 +7,4 @@
 @import '~uxcore/assets/orange.css';
 @import "./OtherStylesMore.css";
 @import "./master.css";
-
-
-
+@import "~bulma/bulma";

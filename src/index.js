@@ -17,9 +17,11 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { Fab } from '@material-ui/core';
 import { ToastContainer } from 'react-toastify'
 import DataContextForProveedoresProvider from "./Pages/Auth/Proveedores/Cotizaciones/Form/formContext";
+import EffectContextProvider from "./Context/EffectContext";
 
 function App() {
   return (
+    <EffectContextProvider>
       <ApolloProvider client={client}>
         <CssBaseline />
         <ToastContainer/>
@@ -38,7 +40,7 @@ function App() {
           </DataContextForProveedoresProvider>
         </AuthContextProvider>
       </ApolloProvider>
-
+      </EffectContextProvider>
   );
 }
 ReactDOM.render(<App />, document.getElementById("root"));
